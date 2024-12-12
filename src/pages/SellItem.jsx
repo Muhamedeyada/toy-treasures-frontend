@@ -73,27 +73,25 @@ const SellItem = () => {
       <div className="w-full md:w-11/12 mx-auto py-4">
         <BreadCrumbs currentPage={"Sell Item"} />
       </div>
-      <div className="flex justify-center">
-        <div className="w-full max-w-6xl md:w-1/2 p-4 md:p-8">
-          <h1 className="text-2xl md:text-4xl font-semibold text-center mt-2 mb-6">
-            Sell Your Item
-          </h1>
-          <Formik
-            initialValues={initialValues}
-            validationSchema={SellItemSchema}
-            onSubmit={onSubmit}
-          >
-            {({ isSubmitting: formIsSubmitting, setFieldValue }) => (
-              <Form className="space-y-4">
-                {submitError && (
-                  <div
-                    className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
-                    role="alert"
-                  >
-                    <span className="block sm:inline">{submitError}</span>
-                  </div>
-                )}
 
+      <div className="w-full max-w-6xl mx-auto text-center">
+        <h1 className="text-2xl md:text-4xl font-semibold mt-2 mb-6">
+          Sell Your Item
+        </h1>
+      </div>
+
+      <Formik
+        initialValues={initialValues}
+        validationSchema={SellItemSchema}
+        onSubmit={onSubmit}
+      >
+        {({ isSubmitting: formIsSubmitting, setFieldValue }) => (
+          <Form className="space-y-8">
+            {/* Two Columns Layout */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+              {/* Left Section */}
+              <div className="space-y-4">
+                {/* Name */}
                 <div className="space-y-2">
                   <label htmlFor="name" className="ml-4 font-semibold">
                     Item Name
@@ -114,18 +112,20 @@ const SellItem = () => {
                   />
                 </div>
 
+                {/* Description */}
                 <div className="space-y-2">
                   <label htmlFor="description" className="ml-4 font-semibold">
                     Description
                   </label>
-                  <div className="input input-bordered rounded-3xl bg-[#f8f8f8] flex items-center gap-2 px-4 py-16">
+                  <div className="input input-bordered rounded-3xl bg-[#f8f8f8] flex items-center gap-2 px-4 py-20">
                     <Field
                       as="textarea"
                       name="description"
                       id="description"
                       placeholder="Enter a detailed description about your item"
-                      className="grow bg-transparent outline-none w-full resize-none "
-                      rows="5"
+                      className="grow bg-transparent outline-none w-full resize-none"
+                      rows="6
+                      "
                     />
                   </div>
                   <ErrorMessage
@@ -135,6 +135,7 @@ const SellItem = () => {
                   />
                 </div>
 
+                {/* Price */}
                 <div className="space-y-2">
                   <label htmlFor="price" className="ml-4 font-semibold">
                     Price
@@ -156,7 +157,11 @@ const SellItem = () => {
                     className="text-red-500 text-sm"
                   />
                 </div>
+              </div>
 
+              {/* Right Section */}
+              {/* Image */}
+              <div className="space-y-4">
                 <div className="space-y-2">
                   <label htmlFor="image" className="ml-4 font-semibold">
                     Image
@@ -179,7 +184,7 @@ const SellItem = () => {
                     className="text-red-500 text-sm"
                   />
                 </div>
-
+                {/* Condition */}
                 <div className="space-y-2">
                   <label htmlFor="condition" className="ml-4 font-semibold">
                     Item Condition
@@ -204,6 +209,7 @@ const SellItem = () => {
                   />
                 </div>
 
+                {/* Category */}
                 <div className="space-y-2">
                   <label htmlFor="category" className="ml-4 font-semibold">
                     Category
@@ -233,6 +239,7 @@ const SellItem = () => {
                   />
                 </div>
 
+                {/* Swap Checkbox */}
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 p-4">
                     <Field
@@ -246,31 +253,31 @@ const SellItem = () => {
                     </label>
                   </div>
                 </div>
+              </div>
+            </div>
 
-                <div className="flex-col justify-between mt-6 md:flex-col">
-                  <button
-                    type="button"
-                    onClick={() => navigate("/")}
-                    disabled={formIsSubmitting || isSubmitting}
-                    className="btn rounded-3xl bg-[var(--secondary-color)] w-full md:w-1/2 py-2 text-white font-semibold hover:bg-gray-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={formIsSubmitting || isSubmitting}
-                    className="btn rounded-3xl bg-[var(--primary-color)] w-full md:w-1/2 py-2 text-black font-semibold hover:bg-[--primary-color] transition-colors mb-4 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {formIsSubmitting || isSubmitting
-                      ? "Submitting..."
-                      : "Submit"}
-                  </button>
-                </div>
-              </Form>
-            )}
-          </Formik>
-        </div>
-      </div>
+            {/* Buttons */}
+            <div className="flex justify-center space-x-4 mt-6">
+              <button
+                type="button"
+                onClick={() => navigate("/")}
+                disabled={formIsSubmitting}
+                className="btn rounded-3xl bg-[var(--secondary-color)] w-32 py-2 text-white font-semibold hover:bg-gray-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                disabled={formIsSubmitting}
+                className="btn rounded-3xl bg-[var(--primary-color)] w-32 py-2 text-black font-semibold hover:bg-[--primary-color] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {formIsSubmitting ? "Submitting..." : "Submit"}
+              </button>
+            </div>
+          </Form>
+        )}
+      </Formik>
+
       <ConfirmationModal
         show={showModal}
         message="Are you sure you want to list this item for sale?"
@@ -281,5 +288,4 @@ const SellItem = () => {
     </div>
   );
 };
-
 export default SellItem;

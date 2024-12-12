@@ -49,7 +49,7 @@ const AccountDetails = () => {
 
   return (
     <>
-      <h2 className="text-2xl font-bold mb-6">Edit Your Account</h2>
+      <h2 className="text-2xl font-bold mb-2">Edit Your Account</h2>
       <Formik
         initialValues={initialValues}
         validationSchema={UpdateUserSchema}

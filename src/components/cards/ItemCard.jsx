@@ -44,7 +44,7 @@ const ItemCard = ({ item }) => {
   };
 
   return (
-    <div className="transform transition-all duration-500 hover:scale-105 bg-white rounded-lg shadow-md overflow-hidden w-full h-[300px] sm:h-[350px] flex flex-col">
+    <div className="transform transition-all duration-500 hover:scale-105  rounded-lg shadow-md overflow-hidden w-full h-[300px]  flex flex-col">
       <div className="p-2 sm:p-3 flex flex-col h-full">
         <div className="flex justify-between items-center mb-2 gap-1">
           <span
@@ -62,11 +62,11 @@ const ItemCard = ({ item }) => {
           )}
         </div>
 
-        <div className="relative w-full h-40 sm:h-40 mb-2 flex-shrink-0">
+        <div className="relative w-full h-40 sm:h-40 mb-2 flex-shrink-0 ">
           <img
             src={item.thumbnail}
             alt={item.name}
-            className="w-full h-full object-fit transition-opacity duration-300"
+            className="w-full h-full object-fit transition-opacity duration-300 rounded-md "
           />
         </div>
 
@@ -80,7 +80,7 @@ const ItemCard = ({ item }) => {
         </div>
 
         <div className="mt-auto">
-          {user && user._id !== item.ownerId._id  && (
+          {user && user._id !== item.ownerId._id && (
             <button
               className="bg-[--primary-color] w-auto mx-auto py-1.5 sm:py-2 px-3 border-none rounded-full flex items-center justify-center gap-1.5 text-white text-xs sm:text-sm font-medium relative shadow-lg shadow-gray-900/20 transition-all duration-300 ease-in-out cursor-pointer overflow-hidden hover:shadow-gray-900/30 active:scale-95 group"
               onClick={handleAddToOrRemoveFromWishlist}

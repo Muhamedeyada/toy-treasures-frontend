@@ -14,10 +14,10 @@ const MyAccount = () => {
       <div className="w-full md:w-11/12 mx-auto py-8">
         <BreadCrumbs currentPage={"My Account"} />
       </div>
-      <div className="container mx-auto px-4 max-w-7xl pt-6 pb-14">
+      <div className="container mx-auto  max-w-7xl  pb-4 ">
         <div className="bg-white rounded-lg shadow-md overflow-hidden ">
           <div className="md:flex">
-            <div className="md:w-1/4  p-6 bg-white border-r border-gray-200  ">
+            <div className="md:w-1/4  p-4 bg-white border-r border-gray-200  ">
               <h3 className="text-2xl font-bold mb-6 text-[--secondary-color] ">
                 My Account
               </h3>
@@ -51,7 +51,7 @@ const MyAccount = () => {
                 ))}
               </nav>
             </div>
-            <div className="md:w-3/4 p-6 bg-white text-[--secondary-color]">
+            <div className="md:w-3/4 p-4 bg-white text-[--secondary-color]">
               <Outlet context={{ user, setUser, handleLogout }} />
             </div>
           </div>

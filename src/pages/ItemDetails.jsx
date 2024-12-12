@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import userApiRequests from "../services/apiRequests/userApiRequests";
-
 import itemApiRequests from "../services/apiRequests/itemApiRequests";
 import MagnifyingGlassImage from "../components/MagnifyingGlassImage";
 import { AiTwotoneEye } from "react-icons/ai";
@@ -29,6 +28,7 @@ const ItemDetails = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [seller, setSeller] = useState(null);
+
   useEffect(() => {
     const fetchItems = async () => {
       try {
@@ -56,7 +56,7 @@ const ItemDetails = () => {
     if (wishlist?.items.length > 0) {
       setInWishlist(wishlist.items.some((i) => i._id === item?._id));
     }
-  }, []);
+  }, [wishlist, item]);
 
   const handleAddToOrRemoveFromWishlist = async () => {
     try {
@@ -92,8 +92,9 @@ const ItemDetails = () => {
 
   return (
     <div>
-      <div className="container mx-auto w-full lg:w-4/5 bg-base-100 shadow-2xl rounded-2xl my-14 p-6 lg:p-10">
+      <div className="container mx-auto w-full lg:w-4/5 shadow-2xl bg-base-100 rounded-2xl my-6 p-2 lg:p-5">
         <div className="flex flex-col lg:flex-row">
+          {/* Left Section - Image + Seller Info */}
           <figure className="lg:w-1/3 flex items-center justify-center mt-6 lg:mt-0 order-1 lg:order-2">
             <div className="w-full aspect-square">
               <MagnifyingGlassImage
@@ -104,6 +105,8 @@ const ItemDetails = () => {
               />
             </div>
           </figure>
+
+          {/* Right Section - Item Details + Wishlist + Seller Contact */}
           <div className="lg:w-2/3 pr-0 lg:pr-10 order-2 lg:order-1">
             <h1 className="card-title mb-4 text-2xl lg:text-4xl font-semibold text-[var(--secondary-color)]">
               {item.name}
@@ -129,9 +132,12 @@ const ItemDetails = () => {
             <p className="text-4xl font-bold mt-4 mb-6 text-[var(--secondary-color)]">
               ${item.price.toFixed(2)} USD
             </p>
+
+            {/* Wishlist Button */}
             {user && (
               <button
-                className="bg-[--primary-color] w-auto mt-auto py-2 px-4  border-none rounded-full flex items-center justify-center gap-2 text-white text-sm font-medium relative shadow-lg shadow-gray-900/20 transition-all duration-300 ease-in-out cursor-pointer overflow-hidden hover:shadow-gray-900/30 active:scale-95 group"
+                className="bg-[--primary-color] w-auto mt-auto py-2 px-4 border-none rounded-full flex items-center justify-center gap-2
+                 text-white text-sm font-medium relative shadow-lg shadow-gray-900/20 transition-all duration-300 ease-in-out cursor-pointer overflow-hidden hover:shadow-gray-900/30 active:scale-95 group"
                 onClick={handleAddToOrRemoveFromWishlist}
                 disabled={userContextLoading}
               >
@@ -145,41 +151,43 @@ const ItemDetails = () => {
               </button>
             )}
             {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
-          </div>
-        </div>{" "}
-        <div className="mt-6">
-          <div className="bg-[--secondary-color-light] p-6 rounded-xl shadow-md transition-transform duration-300 ease-in-out transform ">
-            <h2 className="text-3xl font-bold text-[--secondary-color] mb-4">
-              Seller Contact Information
-            </h2>
-            <div className="space-y-3 text-lg text-[--secondary-color-dark]">
-              <p>
-                <strong className="font-semibold">Name: </strong>
-                {seller.name}
-              </p>
-              <p>
-                <strong className="font-semibold">Email: </strong>
-                <a
-                  href={`mailto:${seller.email}`}
-                  className="text-[--primary-color] underline"
-                >
-                  {seller.email}
-                </a>
-              </p>
-              <p>
-                <strong className="font-semibold">Phone: </strong>
-                <a
-                  href={`tel:${seller.phoneNumber}`}
-                  className="text-[--primary-color] underline"
-                >
-                  {seller.phoneNumber}
-                </a>
-              </p>
-              <p>
-                <strong className="font-semibold">Address: </strong>
-                {seller.address}
-              </p>
-            </div>
+
+            {/* Seller Contact Information Section */}
+            {seller && (
+              <div className="mt-6 bg-[--secondary-color-light] p-6 rounded-xl  transition-transform duration-300 ease-in-out transform">
+                <h2 className="text-3xl font-bold text-[--secondary-color] mb-4">
+                  Seller Contact Information
+                </h2>
+                <div className="space-y-3 text-lg text-[--secondary-color-dark]">
+                  <p>
+                    <strong className="font-semibold">Name: </strong>
+                    {seller.name}
+                  </p>
+                  <p>
+                    <strong className="font-semibold">Email: </strong>
+                    <a
+                      href={`mailto:${seller.email}`}
+                      className="text-[--primary-color] underline"
+                    >
+                      {seller.email}
+                    </a>
+                  </p>
+                  <p>
+                    <strong className="font-semibold">Phone: </strong>
+                    <a
+                      href={`tel:${seller.phoneNumber}`}
+                      className="text-[--primary-color] underline"
+                    >
+                      {seller.phoneNumber}
+                    </a>
+                  </p>
+                  <p>
+                    <strong className="font-semibold">Address: </strong>
+                    {seller.address}
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

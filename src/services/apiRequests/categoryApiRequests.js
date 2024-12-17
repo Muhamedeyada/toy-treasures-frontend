@@ -5,7 +5,7 @@ import { setupInterceptors } from "./interceptor";
 class CategoryService {
   constructor() {
     this.api = axios.create({
-      baseURL: "http://localhost:5000/api/v1/categories",
+      baseURL: "https://toyzcity-backend.vercel.app/api/v1/categories",
       withCredentials: true,
     });
 

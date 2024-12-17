@@ -5,7 +5,7 @@ import { handleError, setupInterceptors } from "./interceptor";
 class ContactUsService {
   constructor() {
     this.api = axios.create({
-      baseURL: "http://localhost:5000/api/v1/contact-us",
+      baseURL: "https://toyzcity-backend.vercel.app/api/v1/contact-us",
       headers: {
         "Content-Type": "application/json",
       },

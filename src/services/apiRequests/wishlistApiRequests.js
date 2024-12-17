@@ -5,7 +5,7 @@ import { setupInterceptors } from "./interceptor";
 class wishlisService {
   constructor() {
     this.api = axios.create({
-      baseURL: "http://localhost:5000/api/v1/wishlist",
+      baseURL: "https://toyzcity-backend.vercel.app/api/v1/wishlist",
       headers: {
         "Content-Type": "application/json",
       },

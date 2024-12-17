@@ -1,3 +1,5 @@
+import daisyui from "daisyui";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -31,7 +33,8 @@ export default {
         "fade-in": "fadeIn 1s ease-out",
         "scroll-down": "scrollDown 2s infinite",
         "slide-left": "slide-left 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both",
-        "slide-in-top": "slide-in-top 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both",
+        "slide-in-top":
+          "slide-in-top 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both",
         "text-shimmer": "text-shimmer 2s linear infinite",
       },
     },
@@ -42,7 +45,7 @@ export default {
     },
   },
   plugins: [
-    require("daisyui"),
+    daisyui,
     function ({ addUtilities }) {
       const newUtilities = {
         ".bg-clip-text": {
